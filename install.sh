@@ -27,16 +27,13 @@ sudo apt install -y \
     libjansson-dev \
     libyaml-dev \
     libxml2-dev \
-    neovim \
     luajit \
-    ripgrep \
     unzip \
     apache2-utils \
     openjdk-8-jre-headless \
     apt-transport-https \
     ca-certificates \
-    software-properties-common \
-    universal-ctags
+    software-properties-common 
     
 # python virtualenv
 pip3 install virtualenv autopep8
@@ -69,15 +66,6 @@ chmod +x $HOME/bin/*
 /bin/cat exports/less_settings >> ~/.bashrc
 /bin/cat exports/bash_prompt >> ~/.bashrc
 
-# Setup neovim
-mkdir -p $HOME/.config/nvim/
-mkdir -p $HOME/.config/nvim/parser
-
-cp -r nvim/* $HOME/.config/nvim/
-nvim -c 'qa!'
-nvim -c ':CocInstall coc-pyright coc-tsserver coc-json coc-html coc-css' -c 'qa!'
-echo "download nerdfonrts from 'https://www.nerdfonts.com/font-downloads'"
-echo "for WSL - Right click top left window on wsl and select default fonts"
 
 echo "installing homebrew"
 
@@ -91,6 +79,7 @@ if [ $? -eq 0 ]; then
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
     echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
+    /home/linuxbrew/.linuxbrew/bin/brew shellenv
     
     brew install docker
     brew install docker-compose
@@ -103,10 +92,23 @@ if [ $? -eq 0 ]; then
     brew install bat
     brew install ripgrep
     brew install git-delta
+    brew install neovim
+    brew install universal-ctags
 
     # Android stuff
     brew install dex2jar
     brew install apktool
+
+    # Setup neovim
+    mkdir -p $HOME/.config/nvim/
+    mkdir -p $HOME/.config/nvim/parser
+
+    cp -r nvim/* $HOME/.config/nvim/
+    nvim --headless +PackerInstall +qa
+    nvim --headless +PackerCompile +qa
+    nvim --headless -c 'CocInstall coc-pyright coc-tsserver coc-json coc-html coc-css' -c 'qall'
+    echo "download nerdfonrts from 'https://www.nerdfonts.com/font-downloads'"
+    echo "for WSL - Right click top left window on wsl and select default fonts"
 fi
 
 
