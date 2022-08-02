@@ -1,0 +1,7 @@
+
+## Instructions
+Run this command:
+
+```
+sudo --user=`whoami` ./install.sh
+```
