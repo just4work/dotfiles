@@ -84,7 +84,8 @@ echo "installing homebrew"
 # workaround to install bat over ripgrep
 #sudo apt install -o Dpkg::Options::="--force-overwrite" bat ripgrep
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# pipe <enter> key 
+echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 if [ $? -eq 0 ]; then
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
