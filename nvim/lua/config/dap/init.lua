@@ -37,6 +37,7 @@ local function configure_exts()
     commented = true,
   }
 
+  require("telescope").load_extension "dap"
   local dap, dapui = require "dap", require "dapui"
   dapui.setup {} -- use default
   dap.listeners.after.event_initialized["dapui_config"] = function()

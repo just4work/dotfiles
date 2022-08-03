@@ -12,6 +12,9 @@ function M.setup()
     args = { DEBUGGER_LOCATION .. "/out/src/chromeDebug.js" },
   }
 
+  -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#Javascript
+  -- Chrome needs to be started with --remote-debugging-port=9222
+
   dap.configurations.javascript = { 
     {
       type = "chrome",
