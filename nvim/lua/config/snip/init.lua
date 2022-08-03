@@ -52,6 +52,7 @@ function M.setup()
     --     },
     --   },
     -- },
+    store_selection_keys = "<C-q>",
     ext_opts = {
       [types.choiceNode] = {
         active = {
@@ -66,20 +67,20 @@ function M.setup()
     },
   }
 
-  _G.snippets_clear()
+  -- _G.snippets_clear()
 
-  local snip_cmd = string.format(
-    [[
-    augroup snippets_clear
-    au!
-    au BufWritePost %s lua _G.snippets_clear()
-    augroup END
-  ]],
-    snippets_folder .. "*.lua"
-  )
+  -- local snip_cmd = string.format(
+  --   [[
+  --   augroup snippets_clear
+  --   au!
+  --   au BufWritePost %s lua _G.snippets_clear()
+  --   augroup END
+  -- ]],
+  --   snippets_folder .. "*.lua"
+  -- )
 
-  vim.cmd(snip_cmd)
-  vim.cmd [[command! LuaSnipEdit :lua _G.edit_ft()]]
+  -- vim.cmd(snip_cmd)
+  -- vim.cmd [[command! LuaSnipEdit :lua _G.edit_ft()]]
 
   -- Lazy load snippets
   require("luasnip.loaders.from_vscode").lazy_load()

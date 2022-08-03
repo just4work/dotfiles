@@ -106,8 +106,9 @@ if [ $? -eq 0 ]; then
     cp -r nvim/* $HOME/.config/nvim/
     nvim --headless +PackerInstall +qa
     nvim --headless +PackerCompile +qa
-    nvim --headless -c 'CocInstall coc-pyright coc-tsserver coc-json coc-html coc-css' -c 'qall'
-    echo "download nerdfonrts from 'https://www.nerdfonts.com/font-downloads'"
+    nvim --headless -c 'CocInstall coc-pyright coc-tsserver coc-json coc-html coc-css coc-snippets' -c 'qall'
+
+    echo "download nerdfonts from 'https://www.nerdfonts.com/font-downloads'"
     echo "for WSL - Right click top left window on wsl and select default fonts"
 fi
 

@@ -1,4 +1,8 @@
 local g = vim.g
+
+local default_opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true }
+
 local keymap = vim.keymap.set
 local nkeymap = vim.api.nvim_set_keymap
 
@@ -14,48 +18,50 @@ local nkeymap = vim.api.nvim_set_keymap
 -- omap, onoremap, ounmap          Operator pending mode
 
 -- Space as leader key
-keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
+keymap("", "<Space>", "<Nop>", default_opts)
 g.mapleader = " "
 g.maplocalleader = " "
 
--- Word wrap
-keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+-- Non leader keys defined here.
+-- Leader keys defined in whichkey.lua
 
-nkeymap("n", "<F6>", ":NvimTreeToggle <CR>", { silent = true })
-
+-- Toogle with F2
+nkeymap("n", "<F2>", ":NvimTreeToggle <CR>", { silent = true })
 
 -- jk to ESC
-keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
+keymap("i", "jk", "<ESC>", default_opts)
 
+-- Center search results
+keymap("n", "n", "nzz", default_opts)
+keymap("n", "N", "Nzz", default_opts)
+
+-- Switch buffer Shift-h or Shift-l
+keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", default_opts)
+keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", default_opts)
 
 --
 -- va}a} visual select block recur
 -- yiB yank inner block
-nkeymap("i", "<F5>", "<C-R>=expand('%:p:h')<CR>", { noremap = true, silent = false })
+nkeymap("i", "<F5>", "<C-R>=expand('%:p:h')<CR>", default_opts)
 
 -- coc.nvim
 -- inspired by albingroen/quick.nvim
 nkeymap("n", "<leader>cl", "<Plug>(coc-codelens-action)", {})
-nkeymap("n", "<leader>a", "<Plug>(coc-codeaction)", {})
-nkeymap("n", "gd", "<Plug>(coc-definition)", {silent = true})
-nkeymap("n", "K", ":call CocActionAsync('doHover')<CR>", {silent = true, noremap = true})
-nkeymap("n", "<leader>rn", "<Plug>(coc-rename)", {})
-nkeymap("n", "[g", "<Plug>(coc-diagnostic-prev)", {})
-nkeymap("n", "]g", "<Plug>(coc-diagnostic-next)", {})
-nkeymap("n", "<leader>f", ":CocCommand prettier.formatFile<CR>", {noremap = true})
-nkeymap("i", "<C-Space>", "coc#refresh()", { silent = true, expr = true })
-nkeymap("i", "<TAB>", "pumvisible() ? '<C-n>' : '<TAB>'", {noremap = true, silent = true, expr = true})
-nkeymap("i", "<S-TAB>", "pumvisible() ? '<C-p>' : '<C-h>'", {noremap = true, expr = true})
-nkeymap("i", "<CR>", "pumvisible() ? coc#_select_confirm() : '<C-G>u<CR><C-R>=coc#on_enter()<CR>'", {silent = true, expr = true, noremap = true})
+nkeymap("n", "<leader>ca", "<Plug>(coc-codeaction)", {})
+nkeymap("n", "<leader>cd", "<Plug>(coc-definition)", {silent = true})
+nkeymap("n", "K", ":call CocActionAsync('doHover')<CR>", default_opts)
+nkeymap("n", "<leader>crn", "<Plug>(coc-rename)", {})
+nkeymap("n", "<leader>[", "<Plug>(coc-diagnostic-prev)", {})
+nkeymap("n", "<leader>]", "<Plug>(coc-diagnostic-next)", {})
+nkeymap("n", "<leader>cf", ":CocCommand prettier.formatFile<CR>", {noremap = true})
 
-nkeymap("n", ";h", ":WhichKey \\<leader> <CR>", { noremap = true})
-
+-- https://github.com/neoclide/coc.nvim/pull/3862
+nkeymap("i", "<C-Space>", "coc#refresh()", expr_opts)
+nkeymap("i", "<TAB>", "coc#pum#visible() ? coc#pum#next(1) : \"<TAB>\"", expr_opts)
+nkeymap("i", "<S-TAB>", "coc#pum#visible() ? coc#pum#prev(1) : \"<C-h>\"", expr_opts)
+nkeymap("i", "<CR>", "coc#pum#visible() ? coc#pum#confirm() : '<C-g>u<CR><c-r>=coc#on_enter()<CR>'", expr_opts)
 
 -- telescope
 keymap("n", "<C-P>", "<cmd> lua require(\"telescope.builtin\").find_files({cwd = \"%:h\"}) <CR>", {silent = true, noremap = true})
 nkeymap("n", "<leader>b", "<cmd> Telescope buffers <CR>", {silent = true, noremap = false})
 nkeymap("n", "<leader>\\", "<cmd> Telescope live_grep <CR>", {silent = true, noremap = true})
-nkeymap("n", "<leader>t", "<cmd> Telescope current_buffer_tags <CR>", {silent = true, noremap = true})
-
-

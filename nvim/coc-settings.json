@@ -1,5 +1,6 @@
 {
     "codeLens.enable": false,
     "python.venvPath": "${env:HOME}/.virtualenv",
-    "python.pythonPath": "${env:VIRTUAL_ENV}/bin/activate"
+    "python.pythonPath": "${env:VIRTUAL_ENV}/bin/activate",
+    "snippets.userSnippetsDirectory": "${env:HOME}/.config/nvim/snippets"
 }

@@ -42,7 +42,6 @@ local function normal_keymap()
     h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help" },
     m = { "<cmd>lua require('telescope.builtin').marks()<cr>", "Marks" },
     o = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Old Files" },
-    g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep" },
     c = { "<cmd>lua require('telescope.builtin').commands()<cr>", "Commands" },
     r = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
     w = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Current Buffer" },
@@ -58,18 +57,7 @@ local function normal_keymap()
 
   local keymap = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
-    -- ["q"] = { "<cmd>lua require('utils').quit()<CR>", "Quit" },
-    -- ["t"] = { "<cmd>ToggleTerm<CR>", "Terminal" },
-
-    -- a = {
-    --   name = "Attempt",
-    --   n = { "<Cmd>lua require('attempt').new_select()<Cr>", "New Select" },
-    --   i = { "<Cmd>lua require('attempt').new_input_ext()<Cr>", "New Input Extension" },
-    --   r = { "<Cmd>lua require('attempt').run()<Cr>", "Run" },
-    --   d = { "<Cmd>lua require('attempt').delete_buf()<Cr>", "Delete Buffer" },
-    --   c = { "<Cmd>lua require('attempt').rename_buf()<Cr>", "Rename Buffer" },
-    --   s = { "<Cmd>Telescope attempt<Cr>", "Search" },
-    -- },
+    ["t"] = { "<cmd>ToggleTerm<CR>", "Terminal" },
 
     b = {
       name = "Buffer",
@@ -82,6 +70,10 @@ local function normal_keymap()
     },
 
     c = {
+      name = "Coc"
+    },
+
+    C = {
       name = "Code",
       g = { "<cmd>Neogen func<Cr>", "Func Doc" },
       G = { "<cmd>Neogen class<Cr>", "Class Doc" },
@@ -96,23 +88,26 @@ local function normal_keymap()
     d = {
       name = "Debug",
     },
-
+    e = {
+      name = "Lint",
+    },    
     f = keymap_f,
     p = keymap_p,
 
-    -- j = {
-    --   name = "Jump",
-    --   a = { "<Cmd>lua require('harpoon.mark').add_file()<Cr>", "Add File" },
-    --   m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<Cr>", "UI Menu" },
-    --   c = { "<Cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<Cr>", "Command Menu" },
-    -- },
-    -- ["0"] = { "<Cmd>2ToggleTerm<Cr>", "ToggleTerm 2" },
-    -- ["1"] = { "<Cmd>lua require('harpoon.ui').nav_file(1) <Cr>", "File 1" },
-    -- ["2"] = { "<Cmd>lua require('harpoon.ui').nav_file(2) <Cr>", "File 2" },
-    -- ["3"] = { "<Cmd>lua require('harpoon.term').gotoTerminal(1)<Cr>", "Terminal 1" },
-    -- ["4"] = { "<Cmd>lua require('harpoon.term').gotoTerminal(2)<Cr>", "Terminal 2" },
-    -- ["5"] = { "<Cmd>lua require('harpoon.term').sendCommand(1,1)<Cr>", "Command 1" },
-    -- ["6"] = { "<Cmd>lua require('harpoon.term').sendCommand(1,2)<Cr>", "Command 2" },
+    -- ThePrimeagen/harpoon
+    j = {
+      name = "Jump",
+      a = { "<Cmd>lua require('harpoon.mark').add_file()<Cr>", "Add File" },
+      m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<Cr>", "UI Menu" },
+      c = { "<Cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<Cr>", "Command Menu" },
+    },
+    ["0"] = { "<Cmd>2ToggleTerm<Cr>", "ToggleTerm 2" },
+    ["1"] = { "<Cmd>lua require('harpoon.ui').nav_file(1) <Cr>", "File 1" },
+    ["2"] = { "<Cmd>lua require('harpoon.ui').nav_file(2) <Cr>", "File 2" },
+    ["3"] = { "<Cmd>lua require('harpoon.term').gotoTerminal(1)<Cr>", "Terminal 1" },
+    ["4"] = { "<Cmd>lua require('harpoon.term').gotoTerminal(2)<Cr>", "Terminal 2" },
+    ["5"] = { "<Cmd>lua require('harpoon.term').sendCommand(1,1)<Cr>", "Command 1" },
+    ["6"] = { "<Cmd>lua require('harpoon.term').sendCommand(1,2)<Cr>", "Command 2" },
 
     t = {
       name = "Test",
@@ -150,120 +145,16 @@ local function normal_keymap()
       c = { [[ <Esc><Cmd>lua require('refactoring').debug.cleanup({below = false})<CR>]], "Debug Cleanup" },
     },
 
-    s = {
-      name = "Search",
-      o = { [[ <Esc><Cmd>lua require('spectre').open()<CR>]], "Open" },
-    },
 
-    v = {
-      name = "Vimspector",
-      G = { "<cmd>lua require('config.vimspector').generate_debug_profile()<cr>", "Generate Debug Profile" },
-      I = { "<cmd>VimspectorInstall<cr>", "Install" },
-      U = { "<cmd>VimspectorUpdate<cr>", "Update" },
-      R = { "<cmd>call vimspector#RunToCursor()<cr>", "Run to Cursor" },
-      c = { "<cmd>call vimspector#Continue()<cr>", "Continue" },
-      i = { "<cmd>call vimspector#StepInto()<cr>", "Step Into" },
-      o = { "<cmd>call vimspector#StepOver()<cr>", "Step Over" },
-      s = { "<cmd>call vimspector#Launch()<cr>", "Start" },
-      t = { "<cmd>call vimspector#ToggleBreakpoint()<cr>", "Toggle Breakpoint" },
-      u = { "<cmd>call vimspector#StepOut()<cr>", "Step Out" },
-      S = { "<cmd>call vimspector#Stop()<cr>", "Stop" },
-      r = { "<cmd>call vimspector#Restart()<cr>", "Restart" },
-      x = { "<cmd>VimspectorReset<cr>", "Reset" },
-      H = { "<cmd>lua require('config.vimspector').toggle_human_mode()<cr>", "Toggle HUMAN mode" },
-    },
-
-    z = {
-      name = "System",
-      -- c = { "<cmd>PackerCompile<cr>", "Compile" },
-      c = { "<cmd>Telescope neoclip<cr>", "Clipboard" },
-      d = { "<cmd>DiffviewOpen<cr>", "Diff View Open" },
-      D = { "<cmd>DiffviewClose<cr>", "Diff View Close" },
-      i = { "<cmd>PackerInstall<cr>", "Install" },
-      m = { "<cmd>lua require('telescope').extensions.macroscope.default()<cr>", "Macros" },
-      p = { "<cmd>PackerProfile<cr>", "Profile" },
-      s = { "<cmd>PackerSync<cr>", "Sync" },
-      S = { "<cmd>PackerStatus<cr>", "Status" },
-      u = { "<cmd>PackerUpdate<cr>", "Update" },
       -- x = { "<cmd>cd %:p:h<cr>", "Change Directory" },
       -- x = { "<cmd>set autochdir<cr>", "Auto ChDir" },
-      x = { "<cmd>Telescope cder<cr>", "Change Directory" },
-      e = { "!!$SHELL<CR>", "Execute line" },
-    --   W = { "<cmd>lua require('utils.session').toggle_session()<cr>", "Toggle Workspace Saving" },
-    --   w = { "<cmd>lua require('utils.session').list_session()<cr>", "Restore Workspace" },
-      z = { "<cmd>lua require'telescope'.extensions.zoxide.list{}<cr>", "Zoxide" },
-    },
-
-    g = {
-      name = "Git",
-      b = { "<cmd>GitBlameToggle<CR>", "Blame" },
-      s = { "<cmd>Neogit<CR>", "Status" },
-      y = {
-        "<cmd>lua require'gitlinker'.get_buf_range_url('n', {action_callback = require'gitlinker.actions'.open_in_browser})<cr>",
-        "Link",
-      },
-      g = { "<cmd>lua require('telescope').extensions.gh.gist()<CR>", "Gist" },
-      -- g = {
-      --   name = "+Github",
-      --   c = {
-      --     name = "+Commits",
-      --     c = { "<cmd>GHCloseCommit<cr>", "Close" },
-      --     e = { "<cmd>GHExpandCommit<cr>", "Expand" },
-      --     o = { "<cmd>GHOpenToCommit<cr>", "Open To" },
-      --     p = { "<cmd>GHPopOutCommit<cr>", "Pop Out" },
-      --     z = { "<cmd>GHCollapseCommit<cr>", "Collapse" },
-      --   },
-      --   i = {
-      --     name = "+Issues",
-      --     p = { "<cmd>GHPreviewIssue<cr>", "Preview" },
-      --   },
-      --   l = {
-      --     name = "+Litee",
-      --     t = { "<cmd>LTPanel<cr>", "Toggle Panel" },
-      --   },
-      --   r = {
-      --     name = "+Review",
-      --     b = { "<cmd>GHStartReview<cr>", "Begin" },
-      --     c = { "<cmd>GHCloseReview<cr>", "Close" },
-      --     d = { "<cmd>GHDeleteReview<cr>", "Delete" },
-      --     e = { "<cmd>GHExpandReview<cr>", "Expand" },
-      --     s = { "<cmd>GHSubmitReview<cr>", "Submit" },
-      --     z = { "<cmd>GHCollapseReview<cr>", "Collapse" },
-      --   },
-      --   p = {
-      --     name = "+Pull Request",
-      --     c = { "<cmd>GHClosePR<cr>", "Close" },
-      --     d = { "<cmd>GHPRDetails<cr>", "Details" },
-      --     e = { "<cmd>GHExpandPR<cr>", "Expand" },
-      --     o = { "<cmd>GHOpenPR<cr>", "Open" },
-      --     p = { "<cmd>GHPopOutPR<cr>", "PopOut" },
-      --     r = { "<cmd>GHRefreshPR<cr>", "Refresh" },
-      --     t = { "<cmd>GHOpenToPR<cr>", "Open To" },
-      --     z = { "<cmd>GHCollapsePR<cr>", "Collapse" },
-      --   },
-      --   t = {
-      --     name = "+Threads",
-      --     c = { "<cmd>GHCreateThread<cr>", "Create" },
-      --     n = { "<cmd>GHNextThread<cr>", "Next" },
-      --     t = { "<cmd>GHToggleThread<cr>", "Toggle" },
-      --   },
-      -- },
-    --   z = { "<cmd>lua require('utils.term').git_client_toggle()<CR>", "Git TUI" },
-    },
   }
   whichkey.register(keymap, opts)
 end
 
 local function visual_keymap()
   local keymap = {
-    g = {
-      name = "Git",
-      y = {
-        "<cmd>lua require'gitlinker'.get_buf_range_url('v', {action_callback = require'gitlinker.actions'.open_in_browser})<cr>",
-        "Link",
-      },
-    },
-
+    -- "ThePrimeagen/refactoring.nvim"
     r = {
       name = "Refactor",
       e = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract Function" },
@@ -367,13 +258,13 @@ local function code_keymap()
     keymap_c.A = { "<cmd>OverseerTaskAction<cr>", "Overseer Task Action" }
 
     if next(keymap_c) ~= nil then
-      local k = { c = keymap_c }
+      local k = { C = keymap_c }
       local o = { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
       whichkey.register(k, o)
     end
 
     if next(keymap_c_v) ~= nil then
-      local k = { c = keymap_c_v }
+      local k = { C = keymap_c_v }
       local o = { mode = "v", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
       whichkey.register(k, o)
     end
@@ -387,3 +278,56 @@ function M.setup()
 end
 
 return M
+
+
+-- local M = {}
+
+-- function M.setup()
+--   local whichkey = require "which-key"
+
+--   local conf = {
+--     window = {
+--       border = "single", -- none, single, double, shadow
+--       position = "bottom", -- bottom, top
+--     },
+--   }
+
+--   local opts = {
+--     mode = "n", -- Normal mode
+--     prefix = "<leader>",
+--     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+--     silent = true, -- use `silent` when creating keymaps
+--     noremap = true, -- use `noremap` when creating keymaps
+--     nowait = false, -- use `nowait` when creating keymaps
+--   }
+
+--   local mappings = {
+--     ["w"] = { "<cmd>update!<CR>", "Save" },
+--     ["q"] = { "<cmd>q!<CR>", "Quit" },
+
+--     b = {
+--       name = "Buffer",
+--       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
+--       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
+--     },
+
+--     z = {
+--       name = "Packer",
+--       c = { "<cmd>PackerCompile<cr>", "Compile" },
+--       i = { "<cmd>PackerInstall<cr>", "Install" },
+--       s = { "<cmd>PackerSync<cr>", "Sync" },
+--       S = { "<cmd>PackerStatus<cr>", "Status" },
+--       u = { "<cmd>PackerUpdate<cr>", "Update" },
+--     },
+
+--     g = {
+--       name = "Git",
+--       s = { "<cmd>Neogit<CR>", "Status" },
+--     },
+--   }
+
+--   whichkey.setup(conf)
+--   whichkey.register(mappings, opts)
+-- end
+
+-- return M

@@ -12,7 +12,9 @@ opt.breakindent = true
 opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
-opt.updatetime = 300
+
+opt.timeoutlen = 100
+opt.updatetime = 200
 opt.signcolumn = "yes"
 
 opt.scrolloff = 2
@@ -29,9 +31,3 @@ opt.fileformat = "unix"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
--- g.netrw_list_hide = '.*\node_modules$'
--- g.netrw_banner = 0
--- g.netrw_winsize = 10
--- g.netrw_liststyle = 3
--- g.netrw_altv = 1
--- g.netrw_browse_split = 4
