@@ -49,6 +49,7 @@ nkeymap("i", "<F5>", "<C-R>=expand('%:p:h')<CR>", default_opts)
 nkeymap("n", "<leader>cl", "<Plug>(coc-codelens-action)", {})
 nkeymap("n", "<leader>ca", "<Plug>(coc-codeaction)", {})
 nkeymap("n", "<leader>cd", "<Plug>(coc-definition)", {silent = true})
+nkeymap("n", "<leader>cs", "<Plug>(coc-codeaction-selected)", {})
 nkeymap("n", "K", ":call CocActionAsync('doHover')<CR>", default_opts)
 nkeymap("n", "<leader>crn", "<Plug>(coc-rename)", {})
 nkeymap("n", "<leader>[", "<Plug>(coc-diagnostic-prev)", {})
@@ -63,5 +64,4 @@ nkeymap("i", "<CR>", "coc#pum#visible() ? coc#pum#confirm() : '<C-g>u<CR><c-r>=c
 
 -- telescope
 keymap("n", "<C-P>", "<cmd> lua require(\"telescope.builtin\").find_files({cwd = \"%:h\"}) <CR>", {silent = true, noremap = true})
-nkeymap("n", "<leader>b", "<cmd> Telescope buffers <CR>", {silent = true, noremap = false})
 nkeymap("n", "<leader>\\", "<cmd> Telescope live_grep <CR>", {silent = true, noremap = true})

@@ -14,7 +14,7 @@ local function configure()
       numhl = "",
     },
     rejected = {
-      text = "",
+      text = "R",
       texthl = "LspDiagnosticsSignHint",
       linehl = "",
       numhl = "",
@@ -58,7 +58,8 @@ local function configure_debuggers()
   require("config.dap.python").setup()
   require("config.dap.go").setup()
   require("config.dap.kotlin").setup()
-  require("config.dap.typescript").setup()
+  require("config.dap.react_chrome").setup()
+  require("config.dap.node").setup()  
 end
 
 function M.setup()

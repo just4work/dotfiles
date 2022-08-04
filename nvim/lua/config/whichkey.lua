@@ -145,27 +145,24 @@ local function normal_keymap()
       c = { [[ <Esc><Cmd>lua require('refactoring').debug.cleanup({below = false})<CR>]], "Debug Cleanup" },
     },
 
-
       -- x = { "<cmd>cd %:p:h<cr>", "Change Directory" },
       -- x = { "<cmd>set autochdir<cr>", "Auto ChDir" },
   }
   whichkey.register(keymap, opts)
 end
 
+-- TODO: Choose between this or built in coc-refactor
 local function visual_keymap()
   local keymap = {
     -- "ThePrimeagen/refactoring.nvim"
     r = {
       name = "Refactor",
-      e = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract Function" },
-      f = {
-        [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function to File')<CR>]],
-        "Extract Function to File",
-      },
-      v = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], "Extract Variable" },
-      i = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
+      -- e = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract Function" },
+      -- f = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function to File')<CR>]] , "Extract Function to File" },
+      -- v = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], "Extract Variable" },
+      -- i = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
       r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
-      V = { [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], "Debug Print Var" },
+      -- V = { [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], "Debug Print Var" },
     },
   }
 
@@ -197,14 +194,6 @@ local function code_keymap()
       keymap_c = {
         name = "Code",
         r = { "<cmd>luafile %<cr>", "Run" },
-      }
-    elseif ft == "rust" then
-      keymap_c = {
-        name = "Code",
-        r = { "<cmd>execute 'Cargo run' | startinsert<cr>", "Run" },
-        D = { "<cmd>RustDebuggables<cr>", "Debuggables" },
-        h = { "<cmd>RustHoverActions<cr>", "Hover Actions" },
-        R = { "<cmd>RustRunnables<cr>", "Runnables" },
       }
     elseif ft == "go" then
       keymap_c = {
@@ -278,56 +267,3 @@ function M.setup()
 end
 
 return M
-
-
--- local M = {}
-
--- function M.setup()
---   local whichkey = require "which-key"
-
---   local conf = {
---     window = {
---       border = "single", -- none, single, double, shadow
---       position = "bottom", -- bottom, top
---     },
---   }
-
---   local opts = {
---     mode = "n", -- Normal mode
---     prefix = "<leader>",
---     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
---     silent = true, -- use `silent` when creating keymaps
---     noremap = true, -- use `noremap` when creating keymaps
---     nowait = false, -- use `nowait` when creating keymaps
---   }
-
---   local mappings = {
---     ["w"] = { "<cmd>update!<CR>", "Save" },
---     ["q"] = { "<cmd>q!<CR>", "Quit" },
-
---     b = {
---       name = "Buffer",
---       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
---       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
---     },
-
---     z = {
---       name = "Packer",
---       c = { "<cmd>PackerCompile<cr>", "Compile" },
---       i = { "<cmd>PackerInstall<cr>", "Install" },
---       s = { "<cmd>PackerSync<cr>", "Sync" },
---       S = { "<cmd>PackerStatus<cr>", "Status" },
---       u = { "<cmd>PackerUpdate<cr>", "Update" },
---     },
-
---     g = {
---       name = "Git",
---       s = { "<cmd>Neogit<CR>", "Status" },
---     },
---   }
-
---   whichkey.setup(conf)
---   whichkey.register(mappings, opts)
--- end
-
--- return M

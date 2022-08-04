@@ -66,6 +66,8 @@ local function plugins(use)
 
     -- Load only when required
     use { "nvim-lua/plenary.nvim", module = "plenary" }
+    -- use { "nvim-lua/popup.nvim" }
+
     -- python black
     use({'psf/black', branch = 'stable' })
 
@@ -84,6 +86,28 @@ local function plugins(use)
         config = function()
             require("config.telescope_conf")
         end,		
+    }
+
+    -- harpoon
+    use({
+      'ThePrimeagen/harpoon',
+      module = "harpoon",
+      config = function()
+        require("config.harpoon").setup()
+      end,      
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-lua/popup.nvim'
+      }
+    })
+
+    -- refactoring
+    use {
+      "ThePrimeagen/refactoring.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.refactoring").setup()
+      end,
     }
 
     -- Coc.nvim 
