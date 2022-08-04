@@ -30,4 +30,3 @@ opt.tagfunc = "CocTagFunc"
 opt.fileformat = "unix"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
-

@@ -39,6 +39,8 @@ local function configure_exts()
 
   require("telescope").load_extension "dap"
   local dap, dapui = require "dap", require "dapui"
+
+  
   dapui.setup {} -- use default
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
@@ -66,6 +68,5 @@ function M.setup()
   require("config.dap.keymaps").setup() -- Keymaps
 end
 
-configure_debuggers()
 
 return M

@@ -15,33 +15,7 @@ function M.setup()
   -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#Javascript
   -- Chrome needs to be started with --remote-debugging-port=9222
 
-  dap.configurations.javascript = { 
-    {
-      type = "chrome",
-      request = "attach",
-      program = "${file}",
-      cwd = vim.fn.getcwd(),
-      sourceMaps = true,
-      protocol = "inspector",
-      port = 9222,
-      webRoot = "${workspaceFolder}",
-    },
-  }
-
   dap.configurations.javascriptreact = {
-    {
-      type = "chrome",
-      request = "attach",
-      program = "${file}",
-      cwd = vim.fn.getcwd(),
-      sourceMaps = true,
-      protocol = "inspector",
-      port = 9222,
-      webRoot = "${workspaceFolder}",
-    },
-  }
-
-  dap.configurations.typescript = {
     {
       type = "chrome",
       request = "attach",

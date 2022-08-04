@@ -33,10 +33,11 @@ sudo apt install -y \
     openjdk-8-jre-headless \
     apt-transport-https \
     ca-certificates \
-    software-properties-common 
+    software-properties-common \ 
+    jq
     
 # python virtualenv
-pip3 install virtualenv autopep8
+python3 -m pip install virtualenv autopep8 black neovim
 
 # node version manager
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
@@ -107,6 +108,22 @@ if [ $? -eq 0 ]; then
     nvim --headless +PackerInstall +qa
     nvim --headless +PackerCompile +qa
     nvim --headless -c 'CocInstall coc-pyright coc-tsserver coc-json coc-html coc-css coc-snippets' -c 'qall'
+
+    # Dap plugins for neovim 
+    # https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#Javascript
+    mkdir -p $HOME/.local/share/nvim
+    git clone https://github.com/microsoft/vscode-node-debug2.git $HOME/.local/share/nvim/vscode-node-debug2
+    git clone https://github.com/microsoft/vscode-chrome-debug.git $HOME/.local/share/nvim/vscode-chrome-debug
+
+    echo "Installing vscode-node-debug2"
+    cd $HOME/.local/share/nvim/vscode-node-debug2 
+    npm install && npm run build
+    cd -
+
+    echo "Installing vscode-chrome-debug"
+    cd $HOME/.local/share/nvim/vscode-chrome-debug
+    npm install && npm run build
+    cd -
 
     echo "download nerdfonts from 'https://www.nerdfonts.com/font-downloads'"
     echo "for WSL - Right click top left window on wsl and select default fonts"

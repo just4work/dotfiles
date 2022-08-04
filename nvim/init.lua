@@ -170,9 +170,8 @@ local function plugins(use)
       event = "BufReadPre",
       keys = { [[<leader>d]] },
       module = { "dap" },
-      wants = { "nvim-dap-virtual-text", "nvim-dap-ui", "nvim-dap-python", "nvim-treesitter" },
       requires = {
-          "Pocco81/DAPInstall.nvim",
+        "Pocco81/DAPInstall.nvim",
         -- UI extensions 
         "theHamsta/nvim-dap-virtual-text",
         "nvim-telescope/telescope-dap.nvim",
