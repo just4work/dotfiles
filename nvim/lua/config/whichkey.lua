@@ -140,6 +140,8 @@ local function normal_keymap()
 
     r = {
       name = "Refactor",
+      b = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Block')<CR>]], "Extract Block" },
+      f = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]], "Extract Block To File" },
       i = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
       p = { [[ <Esc><Cmd>lua require('refactoring').debug.printf({below = false})<CR>]], "Debug Print" },
       c = { [[ <Esc><Cmd>lua require('refactoring').debug.cleanup({below = false})<CR>]], "Debug Cleanup" },
@@ -157,12 +159,12 @@ local function visual_keymap()
     -- "ThePrimeagen/refactoring.nvim"
     r = {
       name = "Refactor",
-      -- e = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract Function" },
-      -- f = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function to File')<CR>]] , "Extract Function to File" },
-      -- v = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], "Extract Variable" },
-      -- i = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
-      r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
-      -- V = { [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], "Debug Print Var" },
+      e = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract Function" },
+      f = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]] , "Extract Function to File" },
+      v = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], "Extract Variable" },
+      i = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
+      r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor Menu" },
+      V = { [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], "Debug Print Var" },
     },
   }
 
