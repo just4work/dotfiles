@@ -3,6 +3,6 @@
     "python.venvPath": "${env:HOME}/.virtualenv",
     "python.pythonPath": "${env:VIRTUAL_ENV}/bin/activate",
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "${env:HOME}/.virtualenv/vim/bin/black",
+    "python.formatting.blackPath": "${env:HOME}/.virtualenv/fingerprint/bin/black",
     "snippets.userSnippetsDirectory": "${env:HOME}/.config/nvim/snippets"
 }

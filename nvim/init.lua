@@ -188,11 +188,12 @@ local function plugins(use)
       end,
       requires = {
         { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
-    --     { "windwp/nvim-ts-autotag", event = "InsertEnter" },
-    --     { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufReadPre" },
-    --     { "RRethy/nvim-treesitter-textsubjects", event = "BufReadPre" },
-    --     { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre" },
-
+        { "RRethy/nvim-treesitter-textsubjects", event = "BufReadPre" },
+        { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre" },
+        -- html style auto tags
+        { "windwp/nvim-ts-autotag", event = "InsertEnter" },
+        -- Comments
+        { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufReadPre" },
       },
     }
 

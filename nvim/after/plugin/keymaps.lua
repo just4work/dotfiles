@@ -48,6 +48,7 @@ nkeymap("i", "<F5>", "<C-R>=expand('%:p:h')<CR>", default_opts)
 
 nkeymap("v", "<leader>s", ":sort i <CR>", {})
 nkeymap("v", "<leader>S", ":sort u <CR>", {})
+
 nkeymap("n", "<leader>h", ":call CocActionAsync('doHover')<CR>", default_opts)
 
 -- Diagnostics

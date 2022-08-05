@@ -112,10 +112,8 @@ local function normal_keymap()
     ["0"] = { "<Cmd>2ToggleTerm<Cr>", "ToggleTerm 2" },
     ["1"] = { "<Cmd>lua require('harpoon.ui').nav_file(1) <Cr>", "File 1" },
     ["2"] = { "<Cmd>lua require('harpoon.ui').nav_file(2) <Cr>", "File 2" },
-    ["3"] = { "<Cmd>lua require('harpoon.term').gotoTerminal(1)<Cr>", "Terminal 1" },
-    ["4"] = { "<Cmd>lua require('harpoon.term').gotoTerminal(2)<Cr>", "Terminal 2" },
-    ["5"] = { "<Cmd>lua require('harpoon.term').sendCommand(1,1)<Cr>", "Command 1" },
-    ["6"] = { "<Cmd>lua require('harpoon.term').sendCommand(1,2)<Cr>", "Command 2" },
+    ["3"] = { "<Cmd>lua require('harpoon.ui').nav_file(3) <Cr>", "File 3" },
+    ["4"] = { "<Cmd>lua require('harpoon.ui').nav_file(4) <Cr>", "File 4" },
 
     t = {
       name = "Test",
