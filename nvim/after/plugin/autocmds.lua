@@ -1,4 +1,25 @@
 local api = vim.api
+local nkeymap = vim.api.nvim_set_keymap
+
+local function FileFormatter()
+  api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+      vim.schedule(xFileFormatter)
+    end,
+  })
+  function xFileFormatter()
+    local bufnr = api.nvim_get_current_buf()
+    local ft = api.nvim_buf_get_option(bufnr, "filetype")
+    if ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
+      nkeymap("n", "<leader>cf", ":CocCommand eslint.executeAutofix<CR>", {noremap = true})
+    else 
+      nkeymap("n", "<leader>cf", ":call CocActionAsync('format') <cr>", {noremap = true})
+    end
+  end
+end
+
+FileFormatter()
 
 -- Highlight on yank
 api.nvim_exec(
@@ -17,47 +38,6 @@ api.nvim_create_autocmd(
   { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
 )
 
--- formatting and linting
-api.nvim_create_autocmd(
-  "FileType",
-  { 
-    pattern = "python",
-    command = [[nmap <buffer> <leader>es :Black<cr>]] 
-  }
-)
-
-api.nvim_create_autocmd(
-  "FileType",
-  { 
-    pattern = "html",
-    command = [[nmap <buffer> <leader>es :normal gg=G<cr>]] 
-  }
-)
-
-api.nvim_create_autocmd(
-  "FileType",
-  { 
-    pattern = "json",
-    command = [[nmap <buffer> <leader>es :%!jq .<cr>]] 
-  }
-)
-
-api.nvim_create_autocmd(
-  "FileType",
-  { 
-    pattern = "yaml",
-    command = [[setlocal ts=2 sts=2 sw=2 expandtab]] 
-  }
-)
-
-api.nvim_create_autocmd(
-  "FileType",
-  { 
-    pattern = "javascript,typescript",
-    command = [[nmap <leader>es :CocCommand eslint.executeAutofix <cr>]] 
-  }
-)
-
 -- api.nvim_create_autocmd(
 --   "User",
 --   { 
@@ -65,5 +45,11 @@ api.nvim_create_autocmd(
 --   }
 -- )
 
+-- coc-highlight
+api.nvim_create_autocmd(
+  "CursorHold",
+  {
+    command = [[:silent call CocActionAsync('highlight')]] 
+  }
+)
 
-vim.cmd([[command! -nargs=0 Format :call CocActionAsync('format') ]])

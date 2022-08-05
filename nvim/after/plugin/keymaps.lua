@@ -25,8 +25,10 @@ g.maplocalleader = " "
 -- Non leader keys defined here.
 -- Leader keys defined in whichkey.lua
 
--- Toogle with F2
+-- Toogle directory with F2
 nkeymap("n", "<F2>", ":NvimTreeToggle <CR>", { silent = true })
+nkeymap("n", "<F3>", ":Twilight <CR>", { silent = true })
+
 
 -- jk to ESC
 keymap("i", "jk", "<ESC>", default_opts)
@@ -44,17 +46,14 @@ keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", default_opts)
 -- yiB yank inner block
 nkeymap("i", "<F5>", "<C-R>=expand('%:p:h')<CR>", default_opts)
 
--- coc.nvim
--- inspired by albingroen/quick.nvim
-nkeymap("n", "<leader>cl", "<Plug>(coc-codelens-action)", {})
-nkeymap("n", "<leader>ca", "<Plug>(coc-codeaction)", {})
-nkeymap("n", "<leader>cd", "<Plug>(coc-definition)", {silent = true})
-nkeymap("n", "<leader>cs", "<Plug>(coc-codeaction-selected)", {})
-nkeymap("n", "K", ":call CocActionAsync('doHover')<CR>", default_opts)
-nkeymap("n", "<leader>crn", "<Plug>(coc-rename)", {})
+nkeymap("v", "<leader>s", ":sort i <CR>", {})
+nkeymap("v", "<leader>S", ":sort u <CR>", {})
+nkeymap("n", "<leader>h", ":call CocActionAsync('doHover')<CR>", default_opts)
+
+-- Diagnostics
 nkeymap("n", "<leader>[", "<Plug>(coc-diagnostic-prev)", {})
 nkeymap("n", "<leader>]", "<Plug>(coc-diagnostic-next)", {})
-nkeymap("n", "<leader>cf", ":CocCommand prettier.formatFile<CR>", {noremap = true})
+
 
 -- https://github.com/neoclide/coc.nvim/pull/3862
 nkeymap("i", "<C-Space>", "coc#refresh()", expr_opts)

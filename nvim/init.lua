@@ -63,6 +63,17 @@ local function plugins(use)
         require('nord').set()
       end,
     }
+    
+    use {
+      "folke/twilight.nvim",
+      config = function()
+        require("twilight").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
 
     -- Load only when required
     use { "nvim-lua/plenary.nvim", module = "plenary" }
@@ -175,15 +186,14 @@ local function plugins(use)
       config = function()
         require("config.treesitter").setup()
       end,
-    --   requires = {
-    --     { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
+      requires = {
+        { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
     --     { "windwp/nvim-ts-autotag", event = "InsertEnter" },
     --     { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufReadPre" },
-    --     { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
     --     { "RRethy/nvim-treesitter-textsubjects", event = "BufReadPre" },
-    --     -- { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre" },
-    --     -- { "yioneko/nvim-yati", event = "BufReadPre" },
-    --   },
+    --     { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre" },
+
+      },
     }
 
 

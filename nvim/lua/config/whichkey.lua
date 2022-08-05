@@ -70,7 +70,15 @@ local function normal_keymap()
     },
 
     c = {
-      name = "Coc"
+      name = "Coc",
+      -- navigate with <C-o> and <C-i>
+      d = {"<Plug>(coc-definition)", "Go to definition"},
+      D = {"<Plug>(coc-declaration)", "Go to declaration"},
+      i = {"<Plug>(coc-implementation)", "Go to implementation"},
+      t = {"<Plug>(coc-type-definition)", "Go to type definition"},
+      R = {"<Plug>(coc-rename)", "Rename in current scope"},
+      r = {"<Plug>(coc-references)", "Code references"},
+      o = {":call CocActionAsync('runCommand', 'editor.action.organizeImport') <CR>", "Organize imports"}
     },
 
     C = {
@@ -183,27 +191,27 @@ local function code_keymap()
     local bufnr = vim.api.nvim_get_current_buf()
     local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
     local fname = vim.fn.expand "%:p:t"
-    local keymap_c = {} -- normal key map
-    local keymap_c_v = {} -- visual key map
+    local keymap_C = {} -- normal key map
+    local keymap_C_v = {} -- visual key map
 
     if ft == "python" then
-      keymap_c = {
+      keymap_C = {
         name = "Code",
         r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" },
         m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor" },
       }
     elseif ft == "lua" then
-      keymap_c = {
+      keymap_C = {
         name = "Code",
         r = { "<cmd>luafile %<cr>", "Run" },
       }
     elseif ft == "go" then
-      keymap_c = {
+      keymap_C = {
         name = "Code",
         r = { "<cmd>GoRun<cr>", "Run" },
       }
     elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
-      keymap_c = {
+      keymap_C = {
         name = "Code",
         o = { "<cmd>TypescriptOrganizeImports<cr>", "Organize Imports" },
         r = { "<cmd>TypescriptRenameFile<cr>", "Rename File" },
@@ -214,48 +222,23 @@ local function code_keymap()
         -- s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" },
         -- t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" },
       }
-    elseif ft == "java" then
-      keymap_c = {
-        name = "Code",
-        o = { "<cmd>lua require'jdtls'.organize_imports()<cr>", "Organize Imports" },
-        v = { "<cmd>lua require('jdtls').extract_variable()<cr>", "Extract Variable" },
-        c = { "<cmd>lua require('jdtls').extract_constant()<cr>", "Extract Constant" },
-        t = { "<cmd>lua require('jdtls').test_class()<cr>", "Test Class" },
-        n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
-      }
-      keymap_c_v = {
-        name = "Code",
-        v = { "<cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
-        c = { "<cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
-        m = { "<cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method" },
-      }
     end
 
     if fname == "package.json" then
-      keymap_c.v = { "<cmd>lua require('package-info').show()<cr>", "Show Version" }
-      keymap_c.c = { "<cmd>lua require('package-info').change_version()<cr>", "Change Version" }
+      keymap_C.v = { "<cmd>lua require('package-info').show()<cr>", "Show Version" }
+      keymap_C.c = { "<cmd>lua require('package-info').change_version()<cr>", "Change Version" }
       -- keymap_c.s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" }
       -- keymap_c.t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" }
     end
 
-    if fname == "Cargo.toml" then
-      keymap_c.u = { "<cmd>lua require('crates').upgrade_all_crates()<cr>", "Upgrade All Crates" }
-    end
-
-    -- overseer.nvim
-    keymap_c.s = { "<cmd>OverseerRun<cr>", "Overseer Run" }
-    keymap_c.S = { "<cmd>OverseerToggle!<cr>", "Overseer Toggle" }
-    keymap_c.a = { "<cmd>OverseerQuickAction<cr>", "Overseer Quick Action" }
-    keymap_c.A = { "<cmd>OverseerTaskAction<cr>", "Overseer Task Action" }
-
-    if next(keymap_c) ~= nil then
-      local k = { C = keymap_c }
+    if next(keymap_C) ~= nil then
+      local k = { C = keymap_C }
       local o = { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
       whichkey.register(k, o)
     end
 
-    if next(keymap_c_v) ~= nil then
-      local k = { C = keymap_c_v }
+    if next(keymap_C_v) ~= nil then
+      local k = { C = keymap_C_v }
       local o = { mode = "v", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
       whichkey.register(k, o)
     end

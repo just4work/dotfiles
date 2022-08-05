@@ -23,11 +23,6 @@ function M.setup()
       enable = true,
     },
 
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = nil,
-    },
 
     incremental_selection = {
       enable = true,
@@ -57,7 +52,9 @@ function M.setup()
       },
     },
 
-    -- nvim-treesitter-textobjects
+
+    -- nvim-treesitter-textobjects 
+    -- Alternative is coc-funcobj
     textobjects = {
       select = {
         enable = true,
@@ -74,6 +71,7 @@ function M.setup()
         },
       },
 
+      -- swap parameter positions
       swap = {
         enable = true,
         swap_next = {
@@ -105,6 +103,8 @@ function M.setup()
         },
       },
 
+      -- show textobject surrounding definition as determined using Neovim's built-in LSP in a floating window. 
+      -- Press the shortcut twice to enter the floating window
       -- lsp_interop = {
       --   enable = true,
       --   border = "none",
@@ -113,11 +113,6 @@ function M.setup()
       --     ["<leader>cF"] = "@class.outer",
       --   },
       -- },
-    },
-
-    -- endwise
-    endwise = {
-      enable = true,
     },
 
     -- autotag
@@ -131,8 +126,6 @@ function M.setup()
       enable_autocmd = false,
     },
 
-    -- indent
-    -- yati = { enable = true },
   }
 end
 
