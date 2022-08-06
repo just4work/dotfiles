@@ -44,15 +44,7 @@ local function normal_keymap()
     o = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Old Files" },
     c = { "<cmd>lua require('telescope.builtin').commands()<cr>", "Commands" },
     r = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
-    w = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Current Buffer" },
-    e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  }
-
-  keymap_p = {
-    name = "Project",
-    p = { "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<cr>", "List" },
-    s = { "<cmd>lua require'telescope'.extensions.repo.list{}<cr>", "Search" },
-    P = { "<cmd>TermExec cmd='BROWSER=brave yarn dev'<cr>", "Slidev" },
+    w = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Current Buffer" }
   }
 
   local keymap = {
@@ -72,13 +64,14 @@ local function normal_keymap()
     c = {
       name = "Coc",
       -- navigate with <C-o> and <C-i>
-      d = {"<Plug>(coc-definition)", "Go to definition"},
-      D = {"<Plug>(coc-declaration)", "Go to declaration"},
-      i = {"<Plug>(coc-implementation)", "Go to implementation"},
-      t = {"<Plug>(coc-type-definition)", "Go to type definition"},
+      d = {"<Cmd>Telescope coc definitions<Cr>", "Go to definition"},
+      D = {"<Cmd>Telescope coc declarations<Cr>", "Go to declaration"},
+      i = {"<Cmd>Telescope coc implementations<Cr>", "Go to implementation"},
+      t = {"<Cmd>Telescope coc type-definitions<Cr>", "Go to type definition"},
       R = {"<Plug>(coc-rename)", "Rename in current scope"},
-      r = {"<Plug>(coc-references)", "Code references"},
-      o = {":call CocActionAsync('runCommand', 'editor.action.organizeImport') <CR>", "Organize imports"}
+      r = {"<Cmd>Telescope coc references<Cr>", "Code references"},
+      o = {":call CocActionAsync('runCommand', 'editor.action.organizeImport') <CR>", "Organize imports"},
+      e = {"<Cmd>Telescope coc diagnostics<Cr>", "Diagnostics"},
     },
 
     C = {
@@ -89,16 +82,21 @@ local function normal_keymap()
       T = { "<cmd>TodoTelescope<Cr>", "TODO" },
       x = "Swap Next Param",
       X = "Swap Prev Param",
-      -- f = "Select Outer Function",
-      -- F = "Select Outer Class",
     },
 
     d = {
       name = "Debug",
     },
-    e = {
-      name = "Lint",
-    },    
+
+    -- Database
+    D = {
+      name = "Database",
+      u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+      f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+      r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+      q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
+    },
+    
     f = keymap_f,
     p = keymap_p,
 
@@ -116,21 +114,6 @@ local function normal_keymap()
     ["4"] = { "<Cmd>lua require('harpoon.ui').nav_file(4) <Cr>", "File 4" },
 
     t = {
-      name = "Test",
-      S = { "<cmd>UltestSummary<cr>", "Summary" },
-      a = { "<cmd>Ultest<cr>", "All" },
-      c = { "<cmd>UltestClear<cr>", "Clear" },
-      d = { "<cmd>UltestDebug<cr>", "Debug" },
-      f = { "<cmd>TestFile<cr>", "File" },
-      l = { "<cmd>TestLast<cr>", "Last" },
-      n = { "<cmd>TestNearest<cr>", "Nearest" },
-      o = { "<cmd>UltestOutput<cr>", "Output" },
-      s = { "<cmd>TestSuite<cr>", "Suite" },
-      v = { "<cmd>TestVisit<cr>", "Visit" },
-      p = { "<Plug>PlenaryTestFile", "PlenaryTestFile" },
-    },
-
-    n = {
       name = "Neotest",
       a = { "<cmd>lua require('neotest').run.attach()<cr>", "Attach" },
       f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run File" },
@@ -152,6 +135,18 @@ local function normal_keymap()
       p = { [[ <Esc><Cmd>lua require('refactoring').debug.printf({below = false})<CR>]], "Debug Print" },
       c = { [[ <Esc><Cmd>lua require('refactoring').debug.cleanup({below = false})<CR>]], "Debug Cleanup" },
     },
+
+    z = {
+      name = "System",
+      s = { ":<C-u>SaveSession<Cr>", "Save session" },
+      l = { ":<C-u>SearchSession<Cr>", "Load session" },
+      c = { "<Cmd>Telescope colorscheme<Cr>", "Color scheme" },
+      h = { "<Cmd>ToggleTerm<CR>", "New horizontal terminal" },
+      t = { "<Cmd>terminal<CR>", "New terminal" },
+      e = { "!!$SHELL<CR>", "Execute line" },
+      r = { "<Cmd>luafile %<Cr>", "Reload lua file" },
+      i = { "<Cmd>PackerUpdate<Cr>", "Packer update" }
+    },    
 
       -- x = { "<cmd>cd %:p:h<cr>", "Change Directory" },
       -- x = { "<cmd>set autochdir<cr>", "Auto ChDir" },

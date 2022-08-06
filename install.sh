@@ -34,10 +34,11 @@ sudo apt install -y \
     apt-transport-https \
     ca-certificates \
     software-properties-common \ 
-    jq
+    jq \ 
+    black
     
 # python virtualenv
-python3 -m pip install virtualenv autopep8 black neovim
+python3 -m pip install virtualenv  
 
 # node version manager
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 

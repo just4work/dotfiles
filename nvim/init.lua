@@ -79,24 +79,59 @@ local function plugins(use)
     use { "nvim-lua/plenary.nvim", module = "plenary" }
     -- use { "nvim-lua/popup.nvim" }
 
+    -- buffers
+    use {'kazhala/close-buffers.nvim'}
+    use {
+      "matbme/JABS.nvim",
+      cmd = "JABSOpen",
+      config = function()
+        require("config.jabs").setup()
+      end,
+    }
+
+    -- Database 
+    use {
+      "tpope/vim-dadbod",
+      event = "VimEnter",
+      requires = { "kristijanhusak/vim-dadbod-ui", "kristijanhusak/vim-dadbod-completion" },
+      config = function()
+        require("config.dadbod").setup()
+      end,
+    }
+
+    -- sessions
+    use {
+      "rmagatti/session-lens",
+      requires = { "rmagatti/auto-session" },
+      config = function()
+        require("config.auto-session").setup()
+        require("session-lens").setup {}
+      end,
+    }    
+
     -- python black
     use({'psf/black', branch = 'stable' })
 
     use {
         'nvim-telescope/telescope.nvim',
-        wants = {
-            "plenary.nvim",
-            'ripgrep',
-            "telescope-fzf-native.nvim"
-        },
         requires = { 
             'nvim-lua/plenary.nvim',
-            'BurntSushi/ripgrep',
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+            'fannheyward/telescope-coc.nvim',
+            'nvim-telescope/telescope-file-browser.nvim'
+
         },
         config = function()
-            require("config.telescope_conf")
+            require("config.telescope_conf").setup()
         end,		
+    }
+
+    -- comment
+    use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
     }
 
     -- harpoon
@@ -132,29 +167,36 @@ local function plugins(use)
         },    
     })
 
+    -- Neotest
+    use ({
+      "nvim-neotest/neotest",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-neotest/neotest-python",
+        "nvim-neotest/neotest-go",
+
+        -- pretty unusable atm.
+        "haydenmeade/neotest-jest",
+      },
+      module = { "neotest" },
+      config = function()
+        require("config.neotest").setup()
+      end
+    })
+
+    -- nvim tree - project directory 
     use({
         "kyazdani42/nvim-tree.lua",
         requires = {
-                "kyazdani42/nvim-web-devicons",
+          "kyazdani42/nvim-web-devicons",
         },
         cmd = { "NvimTreeToggle", "NvimTreeClose" },
         config = function()
-                require("config.nvimtree").setup()
+          require("config.nvimtree").setup()
         end,
     })
-
-    -- use({
-    -- 	"echasnovski/mini.nvim",
-    -- 	config = function()
-    -- 		require("config.mini.base16")
-    -- 		require("config.mini.starter")
-    -- 		require("config.mini.statusline")
-    -- 		require("config.mini.comment")
-    -- 		require("config.mini.surround")
-    -- 		require("config.mini.tabline")
-    -- 		require("config.mini.completion")
-    -- 	end,
-    -- })
 
     -- WhichKey
     use {
@@ -197,6 +239,16 @@ local function plugins(use)
       },
     }
 
+    -- Code documentation
+    use {
+      "danymat/neogen",
+      config = function()
+        require("config.neogen").setup()
+      end,
+      cmd = { "Neogen" },
+      module = "neogen",
+      disable = false,
+    }
 
     -- Debugging
     use {
