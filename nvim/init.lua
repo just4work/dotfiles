@@ -122,7 +122,7 @@ local function plugins(use)
 
         },
         config = function()
-            require("config.telescope_conf").setup()
+          require("config.telescope_conf").setup()
         end,		
     }
 
@@ -130,7 +130,7 @@ local function plugins(use)
     use {
       'numToStr/Comment.nvim',
       config = function()
-          require('Comment').setup()
+        require("config.comment").setup()
       end
     }
 
