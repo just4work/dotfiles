@@ -109,16 +109,13 @@ local function plugins(use)
       end,
     }    
 
-    -- python black
-    use({'psf/black', branch = 'stable' })
-
     use {
         'nvim-telescope/telescope.nvim',
         requires = { 
             'nvim-lua/plenary.nvim',
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
             'fannheyward/telescope-coc.nvim',
-            'nvim-telescope/telescope-file-browser.nvim'
+            --'nvim-telescope/telescope-file-browser.nvim'
 
         },
         config = function()
