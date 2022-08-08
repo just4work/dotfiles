@@ -50,17 +50,11 @@ local function plugins(use)
 
     -- Colorscheme
     use {
-      "shaunsingh/nord.nvim",
+      "folke/tokyonight.nvim",
       config = function()
-        -- Example config in lua
-        vim.g.nord_contrast = false
-        vim.g.nord_borders = false
-        vim.g.nord_disable_background = true
-        vim.g.nord_italic = false
-        vim.g.nord_uniform_diff_background = true
-
-        -- Load the colorscheme
-        require('nord').set()
+        vim.g.tokyonight_style = "night"
+        vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+        vim.cmd[[colorscheme tokyonight]]
       end,
     }
     
