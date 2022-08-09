@@ -25,9 +25,10 @@ g.maplocalleader = " "
 -- Non leader keys defined here.
 -- Leader keys defined in whichkey.lua
 
--- Toogle directory with F2
-nkeymap("n", "<F2>", ":NvimTreeToggle <CR>", { silent = true })
-nkeymap("n", "<F3>", ":Twilight <CR>", { silent = true })
+nkeymap("n", "<F2>", "<Plug>(coc-rename)", { silent = true })
+nkeymap("n", "<F3>", ":ZenMode <CR>", { silent = true })
+nkeymap("n", "<F4>", ":Twilight <CR>", { silent = true })
+nkeymap("n", "<F5>", ":NvimTreeToggle <CR>", { silent = true })
 
 
 -- jk to ESC

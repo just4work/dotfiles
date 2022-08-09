@@ -96,6 +96,15 @@ if [ $? -eq 0 ]; then
     brew install git-delta
     brew install neovim
     brew install universal-ctags
+    brew install duf 
+    brew install broot
+    brew install fd
+    brew install dog
+
+    # 
+    mkdir -p ~/.docker/cli-plugins 
+    ln -sfn /home/linuxbrew/.linuxbrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+
 
     # Android stuff
     brew install dex2jar
