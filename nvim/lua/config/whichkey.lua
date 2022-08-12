@@ -44,7 +44,6 @@ local function normal_keymap()
     o = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Old Files" },
     c = { "<cmd>lua require('telescope.builtin').commands()<cr>", "Commands" },
     r = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
-    w = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Current Buffer" }
   }
 
   local keymap = {
@@ -147,6 +146,12 @@ local function normal_keymap()
       r = { "<Cmd>luafile %<Cr>", "Reload lua file" },
       i = { "<Cmd>PackerUpdate<Cr>", "Packer update" }
     },    
+
+
+    -- Stand alone commands prefixed with <leader>
+    ["<C-f>"] = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Current Buffer" },
+    ["["] = { "<Plug>(coc-diagnostic-prev)", "<- diagnostic"  },
+    ["]"] = { "<Plug>(coc-diagnostic-next)", "-> diagnostic"  },
 
       -- x = { "<cmd>cd %:p:h<cr>", "Change Directory" },
       -- x = { "<cmd>set autochdir<cr>", "Auto ChDir" },

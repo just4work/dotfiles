@@ -28,7 +28,7 @@ g.maplocalleader = " "
 nkeymap("n", "<F2>", "<Plug>(coc-rename)", { silent = true })
 nkeymap("n", "<F3>", ":ZenMode <CR>", { silent = true })
 nkeymap("n", "<F4>", ":Twilight <CR>", { silent = true })
-nkeymap("n", "<F5>", ":NvimTreeToggle <CR>", { silent = true })
+nkeymap("n", "<leader><C-b>", ":NvimTreeToggle <CR>", { silent = true })
 
 
 -- jk to ESC
@@ -53,8 +53,8 @@ nkeymap("v", "<leader>S", ":sort u <CR>", {})
 nkeymap("n", "<leader>h", ":call CocActionAsync('doHover')<CR>", default_opts)
 
 -- Diagnostics
-nkeymap("n", "<leader>[", "<Plug>(coc-diagnostic-prev)", {})
-nkeymap("n", "<leader>]", "<Plug>(coc-diagnostic-next)", {})
+-- nkeymap("n", "<leader>[", "<Plug>(coc-diagnostic-prev)", {})
+-- nkeymap("n", "<leader>]", "<Plug>(coc-diagnostic-next)", {})
 
 
 -- https://github.com/neoclide/coc.nvim/pull/3862
