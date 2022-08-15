@@ -4,38 +4,39 @@ sudo apt-get update
 
 # Essentials
 sudo apt install -y \
+    apache2-utils \
+    apt-transport-https \
     autoconf \
-    pkg-config \
+    black \
     build-essential \
-    curl \
+    ca-certificates \
+    clangd-12 \
     cmake \
+    curl \
     doxygen \
+    gcc make \
     gdb \
     git \
     gnupg \
     htop \
+    jq \ 
+    libjansson-dev \
+    libreadline6-dev \
+    libseccomp-dev \
+    libxml2-dev \
+    libyaml-dev \
+    luajit \
     nodejs \
+    openjdk-8-jre-headless \
+    pkg-config \
     python3 \
+    python3-dev \
     python3-pip \
     shellcheck \
     silversearcher-ag \
-    tmux \
-    libreadline6-dev \
-    python3-dev \
-    gcc make \
-    libseccomp-dev \
-    libjansson-dev \
-    libyaml-dev \
-    libxml2-dev \
-    luajit \
-    unzip \
-    apache2-utils \
-    openjdk-8-jre-headless \
-    apt-transport-https \
-    ca-certificates \
     software-properties-common \ 
-    jq \ 
-    black
+    tmux \
+    unzip
     
 # python virtualenv
 python3 -m pip install virtualenv  
@@ -117,7 +118,7 @@ if [ $? -eq 0 ]; then
     cp -r nvim/* $HOME/.config/nvim/
     nvim --headless +PackerInstall +qa
     nvim --headless +PackerCompile +qa
-    nvim --headless -c 'CocInstall coc-pyright coc-tsserver coc-json coc-html coc-css coc-snippets' -c 'qall'
+    nvim --headless -c 'CocInstall coc-clangd coc-pyright coc-tsserver coc-json coc-html coc-css coc-snippets' -c 'qall'
 
     # Dap plugins for neovim 
     # https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#Javascript
