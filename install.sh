@@ -101,6 +101,7 @@ if [ $? -eq 0 ]; then
     brew install broot
     brew install fd
     brew install dog
+    brew install imagemagick
 
     # 
     mkdir -p ~/.docker/cli-plugins 
