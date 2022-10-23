@@ -11,11 +11,11 @@ local function FileFormatter()
   function xFileFormatter()
     local bufnr = api.nvim_get_current_buf()
     local ft = api.nvim_buf_get_option(bufnr, "filetype")
-    if ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
-      nkeymap("n", "<leader>cf", ":CocCommand eslint.executeAutofix<CR>", {noremap = true})
-    else 
-      nkeymap("n", "<leader>cf", ":call CocActionAsync('format') <cr>", {noremap = true})
-    end
+    -- if ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
+    --  nkeymap("n", "<leader>cf", ":CocCommand eslint.executeAutofix<CR>", {noremap = true})
+    -- else 
+    nkeymap("n", "<leader>cf", ":call CocActionAsync('format') <cr>", {noremap = true})
+    -- end
   end
 end
 

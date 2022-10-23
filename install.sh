@@ -50,7 +50,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # Install nodes version 16 & 18. Use 16 by default
 nvm install 16
 nvm install 18
-nvm alias default 16
+nvm alias default 18
 
 ## tmux
 git clone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"

@@ -64,5 +64,6 @@ nkeymap("i", "<S-TAB>", "coc#pum#visible() ? coc#pum#prev(1) : \"<C-h>\"", expr_
 nkeymap("i", "<CR>", "coc#pum#visible() ? coc#pum#confirm() : '<C-g>u<CR><c-r>=coc#on_enter()<CR>'", expr_opts)
 
 -- telescope
-keymap("n", "<C-P>", "<cmd> lua require'telescope.builtin'.find_files({cwd = \"%:h\"}) <CR>", {silent = true, noremap = true})
+-- keymap("n", "<C-P>", "<cmd> lua require'telescope.builtin'.find_files({cwd = \"%:h\"}) <CR>", {silent = true, noremap = true})
+keymap("n", "<C-P>", "<cmd> lua require'telescope.builtin'.find_files() <CR>", {silent = true, noremap = true})
 nkeymap("n", "\\", "<cmd> Telescope live_grep <CR>", {silent = true, noremap = true})

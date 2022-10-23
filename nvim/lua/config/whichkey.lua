@@ -90,6 +90,7 @@ local function normal_keymap()
     -- Database
     D = {
       name = "Database",
+      a = { "<Cmd>DBUIAddConnection<Cr>", "Add DB Connection" },
       u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
       f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
       r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
